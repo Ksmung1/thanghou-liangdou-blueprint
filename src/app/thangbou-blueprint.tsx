@@ -4,10 +4,12 @@ import { useEffect } from "react";
 
 const navLinks = [
   { href: "#story", label: "Origin" },
+  { href: "#investment-open", label: "Investment" },
   { href: "#roadmap", label: "Roadmap" },
   { href: "#equity", label: "Equity" },
   { href: "#revenue", label: "Economics" },
   { href: "#numbers", label: "Numbers" },
+  { href: "#reviews", label: "Reviews" },
   { href: "#vision", label: "Vision" },
 ];
 

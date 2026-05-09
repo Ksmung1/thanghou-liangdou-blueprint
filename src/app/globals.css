@@ -17,6 +17,16 @@
   --font-cinzel: "Cinzel";
   --font-cinzel-decorative: "Cinzel Decorative";
   --font-cormorant-garamond: "Cormorant Garamond";
+  --review-panel: rgba(18, 38, 28, 0.9);
+  --review-panel-soft: rgba(14, 31, 22, 0.82);
+  --review-border: rgba(212, 132, 10, 0.18);
+  --review-text: #f5e6c8;
+  --review-muted: #c9b99a;
+  --review-primary: #d4840a;
+  --review-primary-dark: #f0b429;
+  --review-star: #f0b429;
+  --review-error: #e07a5f;
+  --review-success: #7aab8a;
 }
 
 @theme inline {
@@ -292,35 +302,6 @@ body::before {
   margin-top: 4px;
 }
 
-.scroll-cue {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  animation: fadeUp 0.8s 0.9s ease both;
-  opacity: 0.6;
-}
-
-.scroll-cue span {
-  font-size: 7.15px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--mist);
-}
-
-.scroll-arrow {
-  width: 18px;
-  height: 18px;
-  border-right: 1.5px solid var(--mist);
-  border-bottom: 1.5px solid var(--mist);
-  transform: rotate(45deg);
-  animation: bounce 1.8s infinite;
-}
-
 #story {
   position: relative;
   padding: 100px 24px;
@@ -376,7 +357,7 @@ body::before {
 }
 
 .story-card::before {
-  content: "\201C";
+  content: '"';
   position: absolute;
   top: -20px;
   left: 28px;
@@ -1176,17 +1157,6 @@ footer {
   }
 }
 
-@keyframes bounce {
-  0%,
-  100% {
-    transform: rotate(45deg) translateY(0);
-  }
-
-  50% {
-    transform: rotate(45deg) translateY(6px);
-  }
-}
-
 @keyframes shimmer {
   0% {
     background-position: -200% center;
@@ -1293,29 +1263,718 @@ nav {
   border-left: 3px solid #9a5aaa;
 }
 
-.hl-amber {
-  color: var(--amber);
+.homepage-reviews-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 24px 88px;
 }
 
-.hl-gold {
+.homepage-investment-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 24px 24px;
+}
+
+.investment-shell {
+  border: 1px solid rgba(212, 132, 10, 0.18);
+  border-radius: 24px;
+  background: rgba(12, 28, 20, 0.72);
+  padding: 28px;
+}
+
+.investment-shell-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.investment-kicker {
   color: var(--gold);
+  font-family: var(--font-cinzel), serif;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
-.hl-sage {
-  color: var(--sage);
+.investment-shell-head h2 {
+  font-family: var(--font-cinzel-decorative), serif;
+  font-size: clamp(24px, 4vw, 40px);
+  line-height: 1.1;
+  margin-bottom: 10px;
+  color: var(--cream);
 }
 
-@media (max-width: 640px) {
+.investment-copy {
+  color: var(--mist);
+  max-width: 62ch;
+  line-height: 1.7;
+}
+
+.investment-rule {
+  flex-shrink: 0;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(240, 180, 41, 0.26);
+  background: rgba(240, 180, 41, 0.08);
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.investment-state {
+  padding: 16px;
+  border: 1px dashed rgba(212, 132, 10, 0.24);
+  border-radius: 16px;
+  background: rgba(14, 31, 22, 0.54);
+  color: var(--mist);
+}
+
+.investment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.investment-card {
+  border: 1px solid rgba(212, 132, 10, 0.18);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 38, 28, 0.9),
+    rgba(13, 30, 22, 0.84)
+  );
+  padding: 22px;
+}
+
+.investment-card-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.investment-card h3 {
+  font-family: var(--font-cinzel), serif;
+  font-size: 20px;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+
+.investment-summary {
+  color: var(--mist);
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+.investment-open-pill {
+  flex-shrink: 0;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(240, 180, 41, 0.24);
+  background: rgba(240, 180, 41, 0.08);
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.investment-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.investment-metric {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 132, 10, 0.14);
+  background: rgba(10, 22, 16, 0.54);
+}
+
+.investment-metric span,
+.investment-progress-labels span,
+.investment-progress-meta span,
+.investment-investors-head span {
+  display: block;
+  color: var(--mist);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.investment-metric strong,
+.investment-progress-labels strong,
+.investment-investors-head strong {
+  color: var(--cream);
+  font-family: var(--font-cinzel), serif;
+  font-size: 16px;
+  margin-top: 6px;
+}
+
+.investment-progress-block {
+  margin-bottom: 16px;
+}
+
+.investment-progress-labels,
+.investment-progress-meta,
+.investment-investors-head,
+.investment-investor-row,
+.admin-project-row,
+.admin-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.investment-progress-track {
+  height: 14px;
+  margin: 12px 0 10px;
+  border-radius: 999px;
+  background: rgba(10, 22, 16, 0.62);
+  overflow: hidden;
+  border: 1px solid rgba(212, 132, 10, 0.12);
+}
+
+.investment-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--amber), var(--gold));
+  box-shadow: 0 0 18px rgba(240, 180, 41, 0.24);
+}
+
+.investment-progress-meta {
+  color: var(--mist);
+}
+
+.investment-slots {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.investment-slot {
+  aspect-ratio: 1;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 185, 154, 0.18);
+  background: rgba(10, 22, 16, 0.5);
+}
+
+.investment-slot-active {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--amber), var(--gold));
+}
+
+.investment-investors {
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 132, 10, 0.14);
+  background: rgba(10, 22, 16, 0.48);
+}
+
+.investment-investor-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.investment-investor-row {
+  color: var(--mist);
+  font-size: 14px;
+}
+
+.investment-investor-row strong {
+  color: var(--gold);
+  font-family: var(--font-cinzel), serif;
+}
+
+.investment-investor-empty {
+  margin-top: 12px;
+  color: var(--mist);
+  font-size: 14px;
+}
+
+.homepage-reviews-head {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.homepage-reviews-kicker {
+  color: var(--gold);
+  font-family: var(--font-cinzel), serif;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.homepage-reviews-head h2 {
+  font-family: var(--font-cinzel-decorative), serif;
+  font-size: clamp(24px, 4vw, 40px);
+  line-height: 1.1;
+  margin-bottom: 12px;
+  color: var(--cream);
+}
+
+.homepage-reviews-head p {
+  color: var(--mist);
+  line-height: 1.7;
+  max-width: 62ch;
+}
+
+.reviews-page {
+  width: min(1080px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 72px;
+}
+
+.admin-page {
+  width: min(1080px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 72px;
+}
+
+.page-header {
+  margin-bottom: 20px;
+}
+
+.reviews-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.reviews-nav-link,
+.reviews-nav-current {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.reviews-nav-link {
+  text-decoration: none;
+  color: var(--gold);
+  border: 1px solid rgba(212, 132, 10, 0.24);
+  background: rgba(18, 38, 28, 0.72);
+}
+
+.reviews-nav-link:hover {
+  border-color: rgba(240, 180, 41, 0.42);
+}
+
+.reviews-nav-current {
+  color: var(--mist);
+  border: 1px solid rgba(201, 185, 154, 0.18);
+  background: rgba(14, 31, 22, 0.54);
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.05;
+  color: var(--cream);
+}
+
+.page-subtitle {
+  margin: 8px 0 0;
+  color: var(--mist);
+}
+
+.admin-lock-card {
+  border: 1px solid rgba(212, 132, 10, 0.18);
+  border-radius: 20px;
+  background: rgba(12, 28, 20, 0.8);
+  padding: 28px;
+  max-width: 520px;
+}
+
+.admin-lock-card h2 {
+  font-family: var(--font-cinzel), serif;
+  color: var(--cream);
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.admin-lock-icon {
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+
+.admin-lock-form {
+  margin-top: 20px;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.admin-select {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid var(--review-border);
+  border-radius: 12px;
+  background: rgba(10, 22, 16, 0.76);
+  color: var(--review-text);
+  padding: 0 14px;
+}
+
+.admin-select:focus {
+  border-color: var(--review-primary);
+  box-shadow: 0 0 0 3px rgba(212, 132, 10, 0.14);
+  outline: none;
+}
+
+.admin-logout {
+  min-height: 40px;
+  border: 1px solid rgba(212, 132, 10, 0.24);
+  border-radius: 999px;
+  padding: 0 14px;
+  background: rgba(240, 180, 41, 0.08);
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.admin-project-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.admin-project-row {
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 132, 10, 0.14);
+  background: rgba(10, 22, 16, 0.48);
+  align-items: start;
+}
+
+.admin-project-row strong {
+  display: block;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+
+.admin-project-row p,
+.admin-project-row span {
+  color: var(--mist);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.reviews-shell {
+  border: 1px solid rgba(212, 132, 10, 0.18);
+  border-radius: 18px;
+  background: rgba(12, 28, 20, 0.74);
+  padding: 20px;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.card {
+  border: 1px solid var(--review-border);
+  border-radius: 16px;
+  background: linear-gradient(
+    180deg,
+    var(--review-panel),
+    var(--review-panel-soft)
+  );
+  padding: 20px;
+  color: var(--review-text);
+  box-shadow: inset 0 1px 0 rgba(240, 180, 41, 0.06);
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--review-text);
+}
+
+.card-copy {
+  margin: 8px 0 0;
+  color: var(--review-muted);
+  line-height: 1.6;
+}
+
+.form-stack {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 0.92rem;
+  color: var(--review-muted);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid var(--review-border);
+  border-radius: 12px;
+  background: rgba(10, 22, 16, 0.76);
+  color: var(--review-text);
+  padding: 12px 14px;
+  outline: none;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--review-primary);
+  box-shadow: 0 0 0 3px rgba(212, 132, 10, 0.14);
+}
+
+.field textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.field-help {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--review-muted);
+  font-size: 0.84rem;
+}
+
+.stars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.star-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--review-border);
+  border-radius: 12px;
+  background: rgba(10, 22, 16, 0.76);
+  color: rgba(201, 185, 154, 0.5);
+  font-size: 1.2rem;
+}
+
+.star-button:hover,
+.star-button.is-active {
+  border-color: var(--review-star);
+  color: var(--review-star);
+}
+
+.submit-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.submit-button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 18px;
+  background: linear-gradient(135deg, var(--review-primary), var(--review-primary-dark));
+  color: var(--bark);
+  font-weight: 700;
+}
+
+.submit-button:hover {
+  background: var(--review-primary-dark);
+}
+
+.submit-button[disabled] {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.status-text {
+  font-size: 0.9rem;
+}
+
+.status-text.error {
+  color: var(--review-error);
+}
+
+.status-text.success {
+  color: var(--review-success);
+}
+
+.list-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.list-side {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+
+.list-meta {
+  color: var(--review-muted);
+  font-size: 0.9rem;
+}
+
+.more-link {
+  color: var(--review-primary);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.more-link:hover {
+  text-decoration: underline;
+}
+
+.list-state {
+  padding: 14px;
+  border: 1px dashed var(--review-border);
+  border-radius: 12px;
+  color: var(--review-muted);
+  background: rgba(10, 22, 16, 0.52);
+}
+
+.reviews-list {
+  display: grid;
+  gap: 12px;
+}
+
+.review-item {
+  border: 1px solid var(--review-border);
+  border-radius: 14px;
+  background: rgba(10, 22, 16, 0.68);
+  padding: 16px;
+}
+
+.review-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.review-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.review-name {
+  font-weight: 700;
+}
+
+.optimistic-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: rgba(212, 132, 10, 0.14);
+  color: var(--review-primary);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.review-date {
+  color: var(--review-muted);
+  font-size: 0.84rem;
+  white-space: nowrap;
+}
+
+.review-stars {
+  color: var(--review-star);
+  letter-spacing: 0.08em;
+}
+
+.review-text {
+  margin: 0;
+  color: var(--review-text);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 860px) {
   .partner-grid,
-  .equity-grid {
+  .equity-grid,
+  .reviews-grid,
+  .admin-grid {
     grid-template-columns: 1fr;
   }
 
+  .list-side {
+    justify-items: start;
+  }
+
+  .investment-shell-head,
+  .investment-card-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .investment-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
   .nav-links {
     display: none;
   }
 
   .story-card {
     padding: 40px 24px;
+  }
+
+  .homepage-investment-wrap,
+  .homepage-reviews-wrap,
+  .reviews-page,
+  .admin-page {
+    width: min(100% - 20px, 1080px);
+    padding-top: 20px;
+  }
+
+  .reviews-shell,
+  .card,
+  .review-item {
+    border-radius: 14px;
+  }
+
+  .reviews-shell,
+  .card {
+    padding: 16px;
+  }
+
+  .list-header,
+  .review-header {
+    display: grid;
   }
 }
