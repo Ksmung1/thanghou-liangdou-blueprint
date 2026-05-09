@@ -312,7 +312,7 @@ export default function ThangbouBlueprint() {
           <h1 className="hero-title">
             Project
             <br />
-            Thangbou-Liandou
+            Thanghou-Liandou
           </h1>
 
           <p className="hero-sub">
@@ -756,7 +756,7 @@ export default function ThangbouBlueprint() {
       </main>
 
       <footer>
-        <div className="footer-title">Project Thangbou-Liandou</div>
+        <div className="footer-title">Project Thanghou-Liandou</div>
         <p className="footer-sub">
           A staged joint venture designed to protect founder ownership, deploy
           capital carefully, and give investors milestone-based numbers instead

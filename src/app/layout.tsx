@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Project Thangbou-Liandou",
+  title: "Project Thanghou-Liandou",
   description:
     "Blueprint landing page for the Educafe × Flowpandas venture portfolio.",
 };
